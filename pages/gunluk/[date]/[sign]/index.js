@@ -2,8 +2,8 @@
 // Statik export uyumlu günlük burç sayfası
 
 import Link from 'next/link';
-import { getDailyHoroscope } from '../../../lib/horoscopes';
-import { getDailyPaths } from '../../../lib/staticPaths';
+import { getDailyHoroscope, getAvailableDates } from '../../../../lib/horoscopes';
+import { getDailyPaths, getAllSigns } from '../../../../lib/staticPaths';
 
 export default function DailyHoroscopePage({ horoscope, currentDate, allDates, allSigns }) {
   if (!horoscope) {
