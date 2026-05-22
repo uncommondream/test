@@ -1,0 +1,95 @@
+backend:
+  name: git-gateway
+  branch: main
+  repo: kullaniciadi/astrology-today
+
+media_folder: "public/images"
+public_folder: "/images"
+
+site_url: https://astrologytoday.com
+
+identity_url: https://astrologytoday.com
+
+collections:
+
+  - name: "monthly"
+    label: "📅 Aylık Burç Yorumları"
+    folder: "content/monthly"
+    create: true
+    slug: "{{year}}-{{month}}-{{sign}}"
+    fields:
+      - { label: "Burç", name: "sign", widget: "select", options: 
+          ["koc", "boga", "ikizler", "yengec", "aslan", "basak", 
+           "terazi", "akrep", "yay", "oglak", "kova", "balik"] }
+      - { label: "Ay", name: "month", widget: "select", options: 
+          ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", 
+           "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"] }
+      - { label: "Yıl", name: "year", widget: "number", default: 2026 }
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Aylık Tema", name: "theme", widget: "text" }
+      - { label: "1. Hafta", name: "week1", widget: "text" }
+      - { label: "2. Hafta", name: "week2", widget: "text" }
+      - { label: "3. Hafta", name: "week3", widget: "text" }
+      - { label: "4. Hafta", name: "week4", widget: "text" }
+      - { label: "Yayında", name: "published", widget: "boolean", default: true }
+
+  - name: "weekly"
+    label: "📆 Haftalık Burç Yorumları"
+    folder: "content/weekly"
+    create: true
+    slug: "{{year}}-{{month}}-w{{week}}-{{sign}}"
+    fields:
+      - { label: "Burç", name: "sign", widget: "select", options: 
+          ["koc", "boga", "ikizler", "yengec", "aslan", "basak", 
+           "terazi", "akrep", "yay", "oglak", "kova", "balik"] }
+      - { label: "Hafta No", name: "week", widget: "select", options: ["1", "2", "3", "4", "5"] }
+      - { label: "Başlangıç Tarihi", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Bitiş Tarihi", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Haftalık Tema", name: "theme", widget: "text" }
+      - { label: "Yayında", name: "published", widget: "boolean", default: true }
+
+  - name: "daily"
+    label: "📱 Günlük Burç Yorumları"
+    folder: "content/daily"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{sign}}"
+    fields:
+      - { label: "Burç", name: "sign", widget: "select", options: 
+          ["koc", "boga", "ikizler", "yengec", "aslan", "basak", 
+           "terazi", "akrep", "yay", "oglak", "kova", "balik"] }
+      - { label: "Tarih", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Genel Yorum", name: "general", widget: "text" }
+      - { label: "Aşk", name: "love", widget: "text", required: false }
+      - { label: "Kariyer", name: "career", widget: "text", required: false }
+      - { label: "Para", name: "money", widget: "text", required: false }
+      - { label: "Sağlık", name: "health", widget: "text", required: false }
+      - { label: "Hafta No", name: "week", widget: "number", default: 1, required: false }
+      - { label: "Yayında", name: "published", widget: "boolean", default: true }
+
+  - name: "blog"
+    label: "📝 Blog Yazıları"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Slug (URL)", name: "slug", widget: "string", required: false }
+      - { label: "Yayın Tarihi", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Kapak Görseli", name: "thumbnail", widget: "image", required: false }
+      - { label: "Özet", name: "excerpt", widget: "text", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", required: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
+      - { label: "Yayında", name: "published", widget: "boolean", default: false }
+
+  - name: "pages"
+    label: "📄 Sayfalar"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Sayfa Başlığı", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string" }
+      - { label: "Sıra", name: "order", widget: "number", default: 1, required: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }

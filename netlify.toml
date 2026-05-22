@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirects for trailing slash
+[[redirects]]
+  from = "/gunluk/:date/:sign"
+  to = "/gunluk/:date/:sign/"
+  status = 301
+
+# Admin panel
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

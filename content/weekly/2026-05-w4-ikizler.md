@@ -1,0 +1,43 @@
+---
+sign: ikizler
+week: 4
+start_date: "2026-05-22"
+end_date: "2026-05-31"
+title: "İkizler Burcu Mayıs Hafta 4 Yorumu"
+theme: "Jüpiter'in şansıyla kısa yolculuklar veya kardeşlerle ilgili güzel gelişmeler."
+published: true
+---
+
+# İkizler Burcu Mayıs 2026 - 4. Hafta
+
+**Tarih Aralığı:** 22-31 Mayıs 2026  
+**Element:** Hava  
+**Yönetici Gezegen:** Merkür
+
+---
+
+## 🌟 Haftalık Tema
+
+Jüpiter'in şansıyla kısa yolculuklar veya kardeşlerle ilgili güzel gelişmeler.
+
+---
+
+## 💕 Aşk
+
+Bu hafta ilişkilerinizde Hava elementinin etkisiyle duygusal derinlik öne çıkıyor. Partnerinizle iletişim açık ve dürüst olmak size kazandıracak.
+
+## 💼 Kariyer
+
+İş hayatında Merkür gezegeninin desteğiyle stratejik düşünme yeteneğiniz güçleniyor. Yeni fırsatları değerlendirin.
+
+## 💰 Para
+
+Finansal konularda dikkatli ve planlı hareket etmek önemli. Beklenmedik bir gelir haberi alabilirsiniz.
+
+## 🏥 Sağlık
+
+Hava elementine uygun aktiviteler size iyi gelecektir. Düzenli uyku ve beslenmeye özen gösterin.
+
+---
+
+*Bu yorum astrolojik verilere dayanarak hazırlanmıştır.*

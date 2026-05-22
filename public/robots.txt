@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astrologytoday.com/sitemap.xml
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Diğer botlar
+User-agent: *
+Disallow: /admin/
+Disallow: /api/

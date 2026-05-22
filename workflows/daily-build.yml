@@ -1,0 +1,67 @@
+name: Daily Horoscope Build & Google Index
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Her gün sabah 6:00 UTC (Türkiye 09:00)
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './out'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Daily build - ${{ github.run_id }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  # Google'a yeni içeriği bildir
+  notify-google:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google Sitemap
+        run: |
+          curl -X GET "https://www.google.com/ping?sitemap=https://astrologytoday.com/sitemap.xml" || true
+          echo "Google sitemap pinged"
+
+      - name: Ping Bing Sitemap
+        run: |
+          curl -X GET "https://www.bing.com/ping?sitemap=https://astrologytoday.com/sitemap.xml" || true
+          echo "Bing sitemap pinged"
+
+  # IndexNow ile Bing'e bildir (isteğe bağlı ama önerilir)
+  indexnow:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: IndexNow Submission
+        run: |
+          curl -X POST "https://api.indexnow.org/IndexNow"             -H "Content-Type: application/json"             -d '{
+              "host": "astrologytoday.com",
+              "key": "${{ secrets.INDEXNOW_KEY }}",
+              "urlList": [
+                "https://astrologytoday.com/",
+                "https://astrologytoday.com/sitemap.xml"
+              ]
+            }' || true
+          echo "IndexNow submitted"
